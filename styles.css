@@ -9,3 +9,23 @@
 .accent {
     background-color: #BC31EA;
 }
+
+#flex-container {
+    display:flex;
+    flex-wrap: wrap;
+}
+
+.card {
+    margin: auto auto 1em 1em;
+}
+
+.card-text {
+    max-height: 100px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: break-spaces;
+}
+
+.card-title {
+    min-height: 4em;
+}
