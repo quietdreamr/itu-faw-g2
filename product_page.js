@@ -53,22 +53,10 @@ window.addEventListener('DOMContentLoaded', (event) => {
         prepareCollection()
     });
 });
-
-
-function filterWinesByYear(year) {
-    let filteredWines = results.filter(wine => wine.year === year);
-    clearCollection()
-    createCards(filteredWines)
-    return filteredWines;
-  }
   
-function attributeFilter(attribute, value) {
-    let filtered_results = results.filter(attribute => attribute.value === value);
+function AttributeFilter(attribute, value) {
+    let filtered_results = results.filter(wine => wine[attribute] === value);
     clearCollection()
-    createCards(filteredWines)
-    return filteredWines;
-
+    createCards(filtered_results)
+    return filtered_results;
 }
-
-
-//yourData.filter((element) => element.category=== theRequestedCategory);
