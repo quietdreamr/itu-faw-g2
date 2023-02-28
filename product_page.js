@@ -45,3 +45,15 @@ window.addEventListener('DOMContentLoaded', (event) => {
         prepareCollection()
     });
 });
+
+
+function filterWinesByYear(year) {
+    
+    let filteredWines = results['product_data'].filter(wine => wine.year === year);
+    return filteredWines;
+  }
+  
+
+
+
+//yourData.filter((element) => element.category=== theRequestedCategory);
