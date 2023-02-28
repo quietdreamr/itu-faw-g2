@@ -1,8 +1,27 @@
 var results;
 
-function createCard(index) {
-    let data = results['product_data'][index]
+function getProducts() {
+    return fetch("./products.json")
+   .then((response) => response.json())
+   .then((json) => {
+       results = json['product_data']
+   });
+}
 
+function prepareCollection(data) {
+    let productAmount = results.length
+    for (let index = 0; index < productAmount; index++) {
+        createCard(results, index)        
+    }
+}
+
+function clearCollection() {
+    let container = document.getElementById('flex-container')
+    container.innerHTML = '';
+}
+
+function createCard(results, index) {
+    let data = results[index]
     let name = data['name']
     let price = data['price']
     let description = data['description']
@@ -20,24 +39,13 @@ function createCard(index) {
         </div>`
 
     document.getElementById('flex-container').innerHTML += (html)
-
 }
 
-function getProducts() {
-     return fetch("./products.json")
-    .then((response) => response.json())
-    .then((json) => {
-        results = json
-    });
-}
-
-function prepareCollection() {
-    let productAmount = results['product_data'].length
-    let data = results['product_data']
+function createCards(results) {
+    let productAmount = results.length
     for (let index = 0; index < productAmount; index++) {
-        createCard(index)        
+        createCard(results, index)        
     }
-
 }
 
 window.addEventListener('DOMContentLoaded', (event) => {
@@ -48,12 +56,19 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
 
 function filterWinesByYear(year) {
-    
-    let filteredWines = results['product_data'].filter(wine => wine.year === year);
+    let filteredWines = results.filter(wine => wine.year === year);
+    clearCollection()
+    createCards(filteredWines)
     return filteredWines;
   }
   
+function attributeFilter(attribute, value) {
+    let filtered_results = results.filter(attribute => attribute.value === value);
+    clearCollection()
+    createCards(filteredWines)
+    return filteredWines;
 
+}
 
 
 //yourData.filter((element) => element.category=== theRequestedCategory);
