@@ -57,6 +57,7 @@ function createCards(results) {
 window.addEventListener('DOMContentLoaded', (event) => {
   getProducts().then((results) => {
       filterCards();
+      filterCardsByPrice();
   });
 });
 
@@ -64,5 +65,11 @@ function filterCards() {
   let filterCards = results.filter(wine => wine['id'] > 120);
   createCards(filterCards);
   console.log(filterCards);
+}
+
+function filterCardsByPrice() {
+  let filterPrice = results.filter(wine => wine['price'] < 150);
+  createCards(filterPrice);
+  console.log(filterPrice);
 }
 
