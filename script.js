@@ -1,9 +1,5 @@
 console.log("Script loaded!");
 
-$(document).ready(function(){
-    $(".owl-carousel").owlCarousel();
-  });
-
 var results = {};
 
 function getProducts() {
@@ -21,7 +17,7 @@ function prepareCollection(data) {
   }
 }
 
-function createCard(results, index) {
+function createCard(results, index, target) {
   let data = results[index]
   let name = data['name']
   let price = data['price']
@@ -39,7 +35,7 @@ function createCard(results, index) {
       </div>
       </div>`
 
-  document.getElementById('carousel').innerHTML += (html)
+  target.innerHTML += (html)
 }
 
 function clearCollection() {
@@ -47,10 +43,10 @@ function clearCollection() {
   container.innerHTML = '';
 }
 
-function createCards(results) {
+function createCards(results, target) {
   let productAmount = results.length
   for (let index = 0; index < productAmount; index++) {
-      createCard(results, index)        
+      createCard(results, index, target)        
   }
 }
 
@@ -58,18 +54,19 @@ window.addEventListener('DOMContentLoaded', (event) => {
   getProducts().then((results) => {
       filterCards();
       filterCardsByPrice();
+      $(".owl-carousel").owlCarousel();
   });
 });
 
 function filterCards() {
   let filterCards = results.filter(wine => wine['id'] > 120);
-  createCards(filterCards);
-  console.log(filterCards);
+  let target = document.getElementById('carousel-1')
+  createCards(filterCards, target);
 }
 
 function filterCardsByPrice() {
   let filterPrice = results.filter(wine => wine['price'] < 150);
-  createCards(filterPrice);
-  console.log(filterPrice);
+  let target = document.getElementById('carousel-2')
+  createCards(filterPrice, target);
 }
 
