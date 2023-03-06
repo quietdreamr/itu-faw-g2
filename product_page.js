@@ -60,3 +60,8 @@ function AttributeFilter(attribute, value) {
     createCards(filtered_results)
     return filtered_results;
 }
+
+function Reset(){
+    clearCollection()
+    prepareCollection()
+}
