@@ -22,6 +22,7 @@
   <!-- Custom Scripts -->
   <script src="./script.js"></script>
   <script src="./cart.js"></script>
+  <script src="./login.js"></script>
 
 </head>
 
@@ -46,10 +47,7 @@
 
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a class="nav-link" href="index.html">Home</a>
-          </li>
-          <li class="nav-item active">
-            <a class="nav-link" href="./login.html">Log in</a>
+            <a class="nav-link" href="./index.html">Home</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="./products.html">Products</a>
@@ -60,33 +58,34 @@
       <div class="d-flex align-items-center">
         <div id="cart">
           <a class="nav-link" href="#" data-toggle="modal" data-target="#cartModal">
-            <svg class="svg-snoweb svg-theme-light" height="50" preserveaspectratio="xMidYMid meet"
-              viewbox="0 0 100 100" width="50" x="0" xmlns="http://www.w3.org/2000/svg" y="0">
-              <path class="svg-fill-primary"
-                d="M69.88,57.88c12.2-12.66-.61-43.49-2.11-46.97-.63-1.46-2.07-2.41-3.67-2.41h-29c-1.67,0-3.16,1.04-3.75,2.6-1.34,3.58-12.77,35.33-1.39,46.81,4.71,4.76,10.29,7.79,16.04,8.76v16.83h-11.6c-2.21,0-4,1.79-4,4s1.79,4,4,4h31.2c2.21,0,4-1.79,4-4s-1.79-4-4-4h-11.6v-16.8c5.75-.94,11.18-3.95,15.88-8.82Zm-19.56,1.14h-.14c-.12,0-.24,0-.36-.01-4.98-.12-9.88-2.39-14.18-6.72-1.87-1.9-2.66-5.45-2.69-9.79-.01-2.46,.21-5.18,.6-8,.86-6.03,2.52-12.53,4.37-18h23.49c1.7,4.43,3.9,11.3,5.01,18,.46,2.76,.72,5.48,.7,8-.05,4.09-.89,7.64-3,9.82-4.15,4.31-8.92,6.62-13.8,6.7Z">
-              </path>
-              <path class="svg-fill-primary"
-                d="M67.12,42.5c-.05,4.09-.89,7.64-3,9.82-4.15,4.31-8.92,6.62-13.8,6.7-.11-.02-.21-.02-.32-.02-.06,0-.12,0-.18,.01-4.98-.12-9.88-2.39-14.18-6.72-1.87-1.9-2.66-5.45-2.69-9.79-.01-2.46,.21-5.18,.6-8h32.87c.46,2.76,.72,5.48,.7,8Z"
-                opacity=".5">
-              </path>
-              <path class="svg-fill-primary"
-                d="M50.32,59.02h-.14c-.12,0-.24,0-.36-.01,.06-.01,.12-.01,.18-.01,.11,0,.21,0,.32,.02Z">
-              </path>
-            </svg>
+            <svg xmlns="http://www.w3.org/2000/svg" preserveAspectRatio= "none" width="29px" height="30px" viewBox="-2.4 -2.4 28.80 25.80" fill="none">
+   
+              <g id="SVGRepo_bgCarrier" stroke-width="0"/>
+              
+              <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round" stroke="#CCCCCC" stroke-width="0.048"/>
+              
+              <g id="SVGRepo_iconCarrier"> <path d="M8 12L8 8C8 5.79086 9.79086 4 12 4V4C14.2091 4 16 5.79086 16 8L16 12" stroke="#222222" stroke-width="1.176" stroke-linecap="round"/> <path d="M3.69435 12.6678C3.83942 10.9269 3.91196 10.0565 4.48605 9.52824C5.06013 9 5.9336 9 7.68053 9H16.3195C18.0664 9 18.9399 9 19.514 9.52824C20.088 10.0565 20.1606 10.9269 20.3057 12.6678L20.8195 18.8339C20.904 19.8474 20.9462 20.3542 20.6491 20.6771C20.352 21 19.8435 21 18.8264 21H5.1736C4.15655 21 3.64802 21 3.35092 20.6771C3.05382 20.3542 3.09605 19.8474 3.18051 18.8339L3.69435 12.6678Z" fill="#222222"/> </g>
+              
+              </svg>
+            </div>
+            
           </a>
-        </div>
-
-        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuAvatar">
-          <li>
-            <a class="dropdown-item" href="#">My profile</a>
-          </li>
-          <li>
-            <a class="dropdown-item" href="#">Settings</a>
-          </li>
-          <li>
-            <a class="dropdown-item" href="#">Logout</a>
-          </li>
-        </ul>
+   
+          <ul class="navbar-nav align-items-center">
+              <svg xmlns="http://www.w3.org/2000/svg" width="30px" height="30px" viewBox="0 0 24 24" fill="none">
+   
+                <g id="SVGRepo_bgCarrier" stroke-width="0"/>
+                
+                <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"/>
+                
+                <g id="SVGRepo_iconCarrier"> <circle cx="12" cy="8" r="4" fill="#222222"/> <path d="M5.33788 17.3206C5.99897 14.5269 8.77173 13 11.6426 13H12.3574C15.2283 13 18.001 14.5269 18.6621 17.3206C18.79 17.8611 18.8917 18.4268 18.9489 19.0016C19.0036 19.5512 18.5523 20 18 20H6C5.44772 20 4.99642 19.5512 5.0511 19.0016C5.1083 18.4268 5.20997 17.8611 5.33788 17.3206Z" fill="#222222"/> </g>
+                
+                </svg>
+              <li class="nav-item" >
+                <a id="messagename" class="nav-link active" href="./login.html">Log in</a>
+              </li>
+            </ul>
+  
       </div>
 
     </div>
@@ -94,7 +93,7 @@
   </nav>
 
   <div class="container mx-auto mt-5 mb-5">
-    <form action="./home.html">
+    <form action="./index.html">
       <div class="mb-3">
         <label for="exampleInputEmail1" class="form-label">First name</label>
         <input type="name" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
@@ -103,7 +102,7 @@
         <label for="exampleInputPassword1" class="form-label">Last name</label>
         <input type="name" class="form-control" id="exampleInputPassword1">
       </div>
-      <button type="submit" class="btn btn-primary">Submit</button>
+      <button type="submit" class="btn btn-primary" onclick="store()">Submit</button>
       <button type="submit" class="btn btn-danger">Cancel</button>
     </form>
   </div>
