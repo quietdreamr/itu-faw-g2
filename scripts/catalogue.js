@@ -1,7 +1,7 @@
 var results;
 
 function getProducts() {
-    return fetch("./products.json")
+    return fetch("./data/products.json")
    .then((response) => response.json())
    .then((json) => {
        results = json['product_data']
