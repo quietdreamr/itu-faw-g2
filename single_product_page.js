@@ -59,8 +59,8 @@ function createProduct(product) {
 fetch('./products.json')
   .then(response => response.json())
   .then(data => {
-    const filteredData = AttributeFilter(data.product_data, 'id', 3);
     let pid = parseInt(getParameterByName('id'))
+    const filteredData = AttributeFilter(data.product_data, 'id', pid);
     console.log(filteredData)
     createProduct(filteredData[0])
   });
