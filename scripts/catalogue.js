@@ -33,7 +33,7 @@ function createCard(results, index) {
     <a href="./productpage.html?id=${id}">
       <img class="mb-5" src="${image}">
       <h5 class="card-title">${name}</h5>
-      </a>
+    </a>
       <h5 class="card-price">${price} DKK</h5>
       <div class="card-text">${description}</div>
       <a href="#" onclick="addToCart(${id})" class="btn btn-primary">Add-to-cart</a>
