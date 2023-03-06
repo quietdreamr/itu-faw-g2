@@ -21,10 +21,10 @@ function createProduct(product) {
     let producer = product.brand
     let country = product.country
 
-    let html = `<div id="product">
+    let html = `
     <div class="Product-picture" style="width: 40%; float:right">     
-        <img class="mb-5" ${image}>
-    </div
+        <img class="mb-5" src="${image}">
+    </div>
     <div class="Product-info" style="width: 60%; float:left">
             <h3 id="name">${name}</h3>    
             <h5 class=" producer-link" href="#" style="color:#584830">${producer}</h5>
@@ -47,20 +47,27 @@ function createProduct(product) {
             </div>
             <!-- Description -->
             <div class="Product-description">
-                <p style="width: 50%; float:left">${description}</p>
+                <p style="width: 100%; float:left">${description}</p>
             </div>
     </div>
-</div>   
-</div>`
+`
 
     document.getElementById('product').innerHTML += (html)
 }
 
-fetch('./products.json')
+fetch('./data/products.json')
   .then(response => response.json())
   .then(data => {
     let pid = parseInt(getParameterByName('id'))
     const filteredData = AttributeFilter(data.product_data, 'id', pid);
     console.log(filteredData)
     createProduct(filteredData[0])
+
+    // start of carousel
+    target = document.getElementById('carousel-1')
+    let filterPrice = data.product_data.filter(wine => wine['type'] === filteredData[0].type);
+    console.log(filteredData[0].type)
+    console.log(filterPrice)
+    createCards(filterPrice, target)
+    jQuery(".owl-carousel").owlCarousel();
   });
