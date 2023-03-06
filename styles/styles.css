@@ -29,3 +29,68 @@
 .card-title {
     min-height: 4em;
 }
+
+
+  .modal-title {
+    font-size: 1.5rem;
+  }
+  
+  .close {
+    color: #fff;
+  }
+  
+  .cart-table {
+    display: table;
+    width: 100%;
+  }
+  
+  .cart-table-header {
+    display: table-row;
+    font-weight: bold;
+    border-bottom: 1px solid #dee2e6;
+  }
+  
+  .cart-table-cell {
+    display: table-cell;
+    padding: 0.75rem;
+    vertical-align: middle;
+  }
+  
+  .cart-table-body {
+    display: table-row-group;
+  }
+  
+  .cart-table-row {
+    display: table-row;
+  }
+  
+  .remove-btn {
+    color: #dc3545;
+    border: 1px solid #dc3545;
+    background-color: transparent;
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
+    transition: all 0.2s ease-in-out;
+    cursor: pointer;
+  }
+  
+  .remove-btn:hover {
+    color: #fff;
+    background-color: #dc3545;
+  }
+  
+  .cart-summary {
+    margin-top: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .total-items {
+    margin-right: 1rem;
+  }
+  
+  .total-price {
+    font-weight: bold;
+  }
+  
