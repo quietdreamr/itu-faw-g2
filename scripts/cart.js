@@ -26,12 +26,11 @@ function fetchCart() {
     const summary = `
       <div class="cart-summary">
         <span class="total-items">Total Items: ${cart.count}</span> 
-        <span class="total-price">Total Price: ${cart.total.toFixed(
-          2
-        )} DKK</span>
+        <span class="total-price">Total Price: ${cart.total.toFixed(2)} DKK</span>
       </div>
     `;
     document.querySelector(".cart-summary").innerHTML = summary;
+    jQuery(".cart-table-header, .cart-summary").show();
   } else {
     document.querySelector(".cart-table-body").innerHTML =
       "<div>Your cart is empty!</div>";
