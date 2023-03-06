@@ -1,3 +1,8 @@
+function AttributeFilter(target, attribute, value) {
+    let filtered_results = target.filter(wine => wine[attribute] === value);
+    return filtered_results;
+}
+
 function getParameterByName(name, url = window.location.href) {
     name = name.replace(/[\[\]]/g, '\\$&');
     var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
@@ -6,28 +11,15 @@ function getParameterByName(name, url = window.location.href) {
     if (!results[2]) return '';
     return decodeURIComponent(results[2].replace(/\+/g, ' '));
 }
-var foo = getParameterByName('id'); 
-
-function AttributeFilter(attribute, value) {
-  let filtered_results = results.filter(wine => wine[attribute] === value);
-  return filtered_results;
-}
-
-if(foo != null) {
-var product = AttributeFilter("id", foo)
-} else {
-    window.location.href = "./index.html"
-}
 
 function createProduct(product) {
-    let data = product[id]
-    let name = data['name']
-    let price = data['price']
-    let description = data['description']
-    let image = data['image']
-    let id = data['id']
-    let producer = data ['brand']
-    let country = data ['country']
+    let name = product.name
+    let price = product.price
+    let description = product.description
+    let image = product.image
+    let id = product.id
+    let producer = product.brand
+    let country = product.country
 
     let html = `<div id="product">
     <div class="Product-picture" style="width: 40%; float:right">     
@@ -61,5 +53,14 @@ function createProduct(product) {
 </div>   
 </div>`
 
-    document.getElementById('flex-conainer').innerHTML += (html)
+    document.getElementById('product').innerHTML += (html)
 }
+
+fetch('./products.json')
+  .then(response => response.json())
+  .then(data => {
+    const filteredData = AttributeFilter(data.product_data, 'id', 3);
+    let pid = parseInt(getParameterByName('id'))
+    console.log(filteredData)
+    createProduct(filteredData[0])
+  });

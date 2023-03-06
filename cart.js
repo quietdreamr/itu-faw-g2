@@ -39,6 +39,7 @@ function addToCart(product_id) {
     let count = cart.count + 1;
     let new_total = cart.total + price;
     localStorage.setItem("cart", JSON.stringify({"product_data":cart.product_data,"count":count,"total":new_total}));
+    jQuery('#atcModal').modal('show');
     return true;
   } else {
     return false;

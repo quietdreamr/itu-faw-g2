@@ -34,7 +34,7 @@ function createCard(results, index) {
       <h5 class="card-title">${name}</h5>
       <h5 class="card-price">${price} DKK</h5>
       <div class="card-text">${description}</div>
-      <a href="#" class="btn btn-primary">Add-to-cart</a>
+      <a href="#" onclick="addToCart(${id})" class="btn btn-primary">Add-to-cart</a>
         </div>
         </div>`
 
