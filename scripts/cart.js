@@ -73,7 +73,7 @@ function addToCart(product_id) {
         total: new_total,
       })
     );
-    jQuery("#atcModal").modal("toggle");
+    jQuery("#atcModal").modal("show");
     return true;
   } else {
     return false;
