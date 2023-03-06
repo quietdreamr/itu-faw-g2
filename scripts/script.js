@@ -12,7 +12,21 @@ window.addEventListener('DOMContentLoaded', (event) => {
   getProducts().then((results) => {
       filterCards();
       filterCardsByPrice();
-      $(".owl-carousel").owlCarousel();
+      jQuery(".owl-carousel").owlCarousel({
+        responsive:{
+          0:{
+              items:1,
+          },
+          600:{
+              items:2,
+              nav:false
+          },
+          1000:{
+              items:3,
+              nav:true,
+          }
+      }      
+      });
   });
   document.getElementById('cart').addEventListener('click', function() {
     fetchCart()
