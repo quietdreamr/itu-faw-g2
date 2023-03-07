@@ -1,24 +1,51 @@
 // Cart script
 
 function fetchCart() {
-  let target = document.querySelector('.modal-body');
-  target.innerHTML = "";
-  if (localStorage.getItem('cart') !== null) {
-    const cart = JSON.parse(localStorage.getItem('cart'));
-    for (let i = 0; i < cart.product_data.length; i++) {
-      const {id, name, price, quantity} = cart.product_data[i];
-      target.innerHTML += `<div class="cart-item">${i+1} - ${name} - ${price} DKK - Quantity: ${quantity} <button class="remove-btn" onclick="removeFromCart(${id})">Remove</button></div>`
+  const cart = JSON.parse(localStorage.getItem("cart"));
+
+  if (cart && cart.count > 0) {
+    jQuery(".cart-table, .cart-summary").show();
+    const target = document.querySelector(".cart-table-body");
+    target.innerHTML = "";
+
+    for (const product of cart.product_data) {
+      const { id, name, price, quantity } = product;
+
+      target.innerHTML += `
+        <div class="cart-table-row">
+          <div class="cart-table-cell">${name}</div>
+          <div class="cart-table-cell">${quantity}</div>
+          <div class="cart-table-cell">${quantity * price} DKK</div>
+          <div class="cart-table-cell">
+            <button class="remove-btn" onclick="removeFromCart(${id});fetchCart();">&times;</button>
+          </div>
+        </div>
+      `;
     }
-    target.innerHTML += `<div class="cart-summary">Total Items: ${cart.count} - Total Price: ${cart.total.toFixed(2)} DKK</div>`;
+
+    const summary = `
+      <div class="cart-summary">
+        <span class="total-items">Total Items: ${cart.count}</span> 
+        <span class="total-price">Total Price: ${cart.total.toFixed(2)} DKK</span>
+      </div>
+    `;
+    document.querySelector(".cart-summary").innerHTML = summary;
+    jQuery(".cart-table-header, .cart-summary").show();
   } else {
-    target.innerHTML += "Your cart is empty!";
+    document.querySelector(".cart-table-body").innerHTML =
+      "<div>Your cart is empty!</div>";
+    jQuery(".cart-table-header, .cart-summary").hide();
   }
+
   return true;
 }
 
-
 function addToCart(product_id) {
-  let cart = JSON.parse(localStorage.getItem('cart')) || {"product_data":[],"count":0,"total":0};
+  let cart = JSON.parse(localStorage.getItem("cart")) || {
+    product_data: [],
+    count: 0,
+    total: 0,
+  };
   let product = null;
   for (let i = 0; i < cart.product_data.length; i++) {
     if (cart.product_data[i].id === product_id) {
@@ -28,18 +55,25 @@ function addToCart(product_id) {
     }
   }
   if (!product) {
-    product = cool_filter('id', product_id)[0];
+    product = cool_filter("id", product_id)[0];
     if (product) {
-      product['quantity'] = 1;
+      product["quantity"] = 1;
       cart.product_data.push(product);
     }
   }
   if (product) {
-    let price = product['price'];
+    let price = product["price"];
     let count = cart.count + 1;
     let new_total = cart.total + price;
-    localStorage.setItem("cart", JSON.stringify({"product_data":cart.product_data,"count":count,"total":new_total}));
-    jQuery('#atcModal').modal('show');
+    localStorage.setItem(
+      "cart",
+      JSON.stringify({
+        product_data: cart.product_data,
+        count: count,
+        total: new_total,
+      })
+    );
+    jQuery("#atcModal").modal("show");
     return true;
   } else {
     return false;
@@ -47,8 +81,12 @@ function addToCart(product_id) {
 }
 
 function removeFromCart(product_id) {
-  let cart = JSON.parse(localStorage.getItem('cart')) || {"product_data":[],"count":0,"total":0};
-  let updatedCartData = {"product_data":[],"count":0,"total":0};
+  let cart = JSON.parse(localStorage.getItem("cart")) || {
+    product_data: [],
+    count: 0,
+    total: 0,
+  };
+  let updatedCartData = { product_data: [], count: 0, total: 0 };
   let productIndex = -1;
   let productPrice = 0;
 
@@ -68,7 +106,9 @@ function removeFromCart(product_id) {
       updatedCartData.count = cart.count - 1;
       updatedCartData.total = cart.total - productPrice;
     } else {
-      updatedCartData.product_data = cart.product_data.filter((_, i) => i !== productIndex);
+      updatedCartData.product_data = cart.product_data.filter(
+        (_, i) => i !== productIndex
+      );
       updatedCartData.count = cart.count - 1;
       updatedCartData.total = cart.total - productPrice;
     }
@@ -79,8 +119,13 @@ function removeFromCart(product_id) {
   }
 }
 
-
 function cool_filter(attribute, value) {
-  let filtered_results = results.filter(wine => wine[attribute] === value);
+  let filtered_results = results.filter((wine) => wine[attribute] === value);
   return filtered_results;
-};
+}
+
+function viewCart() {
+  jQuery("#atcModal").modal("hide");
+  jQuery("#cartModal").modal("show");
+  fetchCart();
+}
