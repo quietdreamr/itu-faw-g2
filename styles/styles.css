@@ -1,9 +1,9 @@
 .primary {
-    background-color: #C8C8C8;
+    background-color: #FCFBF6;
 }
 
 .primary-background {
-    background-color: white;
+    background-color: #FCFBF6;
 }
 
 .accent {
@@ -101,3 +101,55 @@
     max-height: 500px;
   }
   
+  input[type=name] {
+    width: 100%;
+    padding: 7px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    background-color: #FCFBF6;
+    border: 1px solid #c0c0c0;
+    border-radius: 0px;
+    box-sizing: border-box;
+  }
+
+  input[type=name]:focus {
+    background-color: #FCFBF6;
+    border: 2px solid #9D2626;
+    box-shadow: none;
+  }
+
+  button[type=submit] {
+    background-color: #373737;
+    color: #FCFBF6;
+    padding: 7px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 0px;
+    cursor: pointer;
+    width: 100%;
+  }
+
+  button[type=submit]:hover {
+    background-color: #9D2626;
+    }
+    
+  button[type=cancel] {
+    background-color: #FCFBF6;
+    color: #373737;
+    padding: 7px 20px;
+    margin: 8px 0;
+    border: 1px solid #373737;
+    border-radius: 0px;
+    cursor: pointer;
+    width: 100%;
+  }
+
+  button[type=cancel]:hover {
+    background-color: #9D2626;
+    }
+
+  label {
+    font-weight: lighter;
+    font-size: 16px;
+    color: #8b8b8b;
+  }
