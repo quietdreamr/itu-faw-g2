@@ -30,7 +30,7 @@ function createCard(results, index) {
 
     let html = `<div class="card" style="width: 18rem;">
     <div class="card-body">
-    <a href="./productpage.html?id=${id}">
+    <a href="./product.html?id=${id}">
       <img class="mb-5" src="${image}">
       <h5 class="card-title">${name}</h5>
     </a>
