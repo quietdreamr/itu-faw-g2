@@ -7,7 +7,7 @@
 }
 
 .accent {
-    background-color: #BC31EA;
+    background-color: #9D2626;
 }
 
 #flex-container {
@@ -132,6 +132,10 @@
   button[type=submit]:hover {
     background-color: #9D2626;
     }
+
+  button[type=submit]:not(:disabled):not(:disabled):active {
+    background-color: #9D2626;
+   } 
     
   button[type=cancel] {
     background-color: #FCFBF6;
