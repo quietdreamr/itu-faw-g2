@@ -29,9 +29,6 @@ window.addEventListener('DOMContentLoaded', (event) => {
       }      
       });
   });
-  document.getElementById('cart').addEventListener('click', function() {
-    fetchCart()
-  });
 
 });
 

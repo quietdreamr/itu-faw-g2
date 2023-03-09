@@ -22,8 +22,8 @@ function createProduct(product) {
     let country = product.country
 
     let html = `
-    <div class="Product-picture" style="width: 40%; float:right">     
-        <img class="mb-5" src="${image}">
+    <div class="Product-picture" style="width: 40%; float:right;">     
+        <img class="mb-5" src="${image}" style="max-width:100%">
     </div>
     <div class="Product-info" style="width: 60%; float:left">
             <h3 id="name">${name}</h3>    
@@ -43,7 +43,7 @@ function createProduct(product) {
             </div>                
             <!-- Button addtocard -->
             <div class="section" style="padding-bottom:20px;">
-                <a href="#" class="btn btn-primary">Add-to-cart</a>
+                <a href="#" class="btn btn-primary" onclick="addToCart(${id})">Add-to-cart</a>
             </div>
             <!-- Description -->
             <div class="Product-description">
