@@ -101,8 +101,46 @@
     max-height: 500px;
   }
   
-  @media only screen and (max-width: 600px) {
+  .basket-button {
+    background-color: #545b62;
+    border: none;
+    outline: none;
+    color: white;
+    margin-top: 20px;
+    font-family: "Poppins", sans-serif;
+    font-size: 12px;
+    height: 40px;
+    width: 100px;
+    border-radius: 15px 15px;
+  }
+
+  .basket-button:hover {
+    font-weight: bold;
+  }
+
+  #dropdownMenuButton {
+    background-color: #fff;
+    color: #000;
+  }
+
+  #resetButton {
+    background-color: #707c88;
+    border: #545b62;
+  }
+  
+  #resetButton:hover {
+    background-color: #545b62;
+  }
+
+  .card-title {
+    color: #000;
+    
+  }
+  .card-title:hover {
+    font-weight: bold;
+  }
+  
+    @media only screen and (max-width: 600px) {
     .home-icon {
       display:none!important;
     }
-  }
