@@ -1,3 +1,13 @@
+var results = {};
+
+function getProducts() {
+  return fetch("./data/products.json")
+ .then((response) => response.json())
+ .then((json) => {
+     results = json['product_data']
+ });
+}
+
 function AttributeFilter(target, attribute, value) {
     let filtered_results = target.filter(wine => wine[attribute] === value);
     return filtered_results;
@@ -92,3 +102,8 @@ fetch('./data/products.json')
 
 
 })});
+
+window.addEventListener('DOMContentLoaded', (event) => {
+    getProducts().then((results) => {
+    })
+});  
