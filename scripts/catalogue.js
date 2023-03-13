@@ -54,6 +54,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
     getProducts().then((results) => {
         prepareCollection()
     });
+    addUserName();
 });
   
 function AttributeFilter(attribute, value) {
