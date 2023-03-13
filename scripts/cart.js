@@ -75,6 +75,7 @@ function addToCart(product_id) {
         total: new_total,
       })
     );
+    jQuery('.cart-modal-body').text(`${product["name"]} was added to your basket.`)
     jQuery("#atcModal").modal("show");
     return true;
   } else {
