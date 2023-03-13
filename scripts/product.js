@@ -22,10 +22,10 @@ function createProduct(product) {
     let country = product.country
 
     let html = `
-    <div class="Product-picture" style="width: 40%; float:right;">     
-        <img class="mb-5" src="${image}" style="max-width:100%">
+    <div class="Product-picture" style="width: 40%; float:left; padding-left: 5%; margin-top: 1%;">     
+        <img class="mb-5" src="${image}" style="max-width:100%; zoom: 140%; background-color:white;">
     </div>
-    <div class="Product-info" style="width: 60%; float:left">
+    <div class="Product-info" style="width: 60%; float:left; margin-top: 1%;">
             <h3 id="name">${name}</h3>    
             <h5 class=" producer-link" href="#" style="color:#584830">${producer}</h5>
             <h5 style="color:#584830">${country}</h5>
@@ -33,14 +33,14 @@ function createProduct(product) {
             <h6 class="title-price"><small>Price</small></h6>
             <h5 style="margin-top:0px;">${price} DKK</h5>
             <!-- Quantity select -->
-            <div class="section" style="padding-bottom:20px;">
+            <!-- <div class="section" style="padding-bottom:20px;">
                 <h6 class="title-attr"><small>Quantity</small></h6>                    
                 <div>
                     <div class="btn-minus"><span class="glyphicon glyphicon-minus"></span></div>
                     <input value="1" />
                     <div class="btn-plus"><span class="glyphicon glyphicon-plus"></span></div>
                 </div>
-            </div>                
+            </div>  -->             
             <!-- Button addtocard -->
             <div class="section" style="padding-bottom:20px;">
                 <a href="#" class="btn btn-primary" onclick="addToCart(${id})">Add-to-cart</a>
