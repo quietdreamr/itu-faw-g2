@@ -73,6 +73,8 @@ fetch('./data/products.json')
   .finally(() => {
     jQuery(".owl-carousel").owlCarousel({
     });
+    addUserName();
+
 
 
 })});
