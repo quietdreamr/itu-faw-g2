@@ -29,6 +29,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
       }      
       });
   });
+  addUserName();
 
 });
 
@@ -43,4 +44,3 @@ function filterCardsByPrice() {
   let target = document.getElementById('carousel-2')
   createCards(filterPrice, target);
 }
-
