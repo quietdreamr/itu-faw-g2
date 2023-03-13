@@ -22,7 +22,7 @@ function createProduct(product) {
     let country = product.country
 
     let html = `
-    <div class="Product-picture" style="width: 40%; float:left; padding-left: 5%; margin-top: 1%;">     
+    <div class="Product-picture" style="width: 40%; float:right; padding-left: 5%; margin-top: 1%;">     
         <img class="mb-5" src="${image}" style="max-width:100%; zoom: 140%; background-color:white;">
     </div>
     <div class="Product-info" style="width: 60%; float:left; margin-top: 1%;">
@@ -55,6 +55,8 @@ function createProduct(product) {
     document.getElementById('product').innerHTML += (html)
 }
 
+
+window.addEventListener('DOMContentLoaded', (event) => {
 fetch('./data/products.json')
   .then(response => response.json())
   .then(data => {
@@ -66,8 +68,11 @@ fetch('./data/products.json')
     // start of carousel
     target = document.getElementById('carousel-1')
     let filterPrice = data.product_data.filter(wine => wine['type'] === filteredData[0].type);
-    console.log(filteredData[0].type)
-    console.log(filterPrice)
-    createCards(filterPrice, target)
-    jQuery(".owl-carousel").owlCarousel();
-  });
+    createCards(filterPrice, target, true)
+  })
+  .finally(() => {
+    jQuery(".owl-carousel").owlCarousel({
+    });
+
+
+})});
