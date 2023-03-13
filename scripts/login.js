@@ -13,7 +13,7 @@ function store() {
          document.getElementById("messagename").innerHTML =
          "Welcome, " + userName;
          document.getElementById("cartModalLabel").innerHTML =
-         userName + "'s cart"
+         userName + "'s basket"
         }
       }
  

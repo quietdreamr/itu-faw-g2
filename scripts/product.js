@@ -27,8 +27,8 @@ function createProduct(product) {
     </div>
     <div class="Product-info" style="width: 60%; float:left; margin-top: 1%;">
             <h3 id="name">${name}</h3>    
-            <h5 class=" producer-link" href="#" style="color:#584830">${producer}</h5>
-            <h5 style="color:#584830">${country}</h5>
+            <h5 class=" producer-link" href="#" style="color:#9D2626">${producer}</h5>
+            <h5 style="color:#9D2626">${country}</h5>
             <!-- Price-->
             <h6 class="title-price"><small>Price</small></h6>
             <h5 style="margin-top:0px;">${price} DKK</h5>
@@ -43,7 +43,7 @@ function createProduct(product) {
             </div>  -->             
             <!-- Button addtocard -->
             <div class="section" style="padding-bottom:20px;">
-                <a href="#" class="btn btn-primary" onclick="addToCart(${id})">Add-to-cart</a>
+                <button href="#" class="basket-button" onclick="addToCart(${id})">Add to basket</button>
             </div>
             <!-- Description -->
             <div class="Product-description">

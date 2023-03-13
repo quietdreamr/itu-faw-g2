@@ -8,13 +8,13 @@ function createCard(results, index, target) {
 
   let html = `<div class="card" style="width: 18rem;">
   <div class="card-body">
-    <a href="./product.html?id=${id}">
+    <a style="text-decoration:none;" href="./product.html?id=${id}">
     <img class="mb-5" src="${image}">
     <h5 class="card-title">${name}</h5>
     </a>
     <h5 class="card-price">${price} DKK</h5>
     <div class="card-text">${description}</div>
-    <a href="#" class="btn btn-primary" onclick="addToCart(${id})" data-pid=${id}>Add-to-cart</a>
+    <button class="basket-button" onclick="addToCart(${id})" data-pid=${id}>Add to basket</button>
       </div>
       </div>`
 

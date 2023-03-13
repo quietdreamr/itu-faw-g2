@@ -35,7 +35,7 @@ function fetchCart() {
     jQuery(".cart-table-header, .cart-summary").show();
   } else {
     document.querySelector(".cart-table-body").innerHTML =
-      "<div>Your cart is empty!</div>";
+      "<div>Your basket is empty!</div>";
     jQuery(".cart-table-header, .cart-summary").hide();
   }
 

@@ -1,5 +1,9 @@
+body {
+  background-color: #FCFBF6!important;
+}
+
 .primary {
-    background-color: #FCFBF6;
+    background-color: #FCFBF6!important;
 }
 
 .primary-background {
@@ -8,6 +12,14 @@
 
 .accent {
     background-color: #9D2626;
+}
+
+.accent-text {
+  color:#9D2626;
+}
+
+.text {
+  color: #373737!important;
 }
 
 #flex-container {
@@ -65,18 +77,18 @@
   }
   
   .remove-btn {
-    color: #dc3545;
-    border: 1px solid #dc3545;
     background-color: transparent;
     padding: 0.25rem 0.5rem;
-    border-radius: 0.25rem;
     transition: all 0.2s ease-in-out;
     cursor: pointer;
+    background-color: #373737;
+    color: white;
+    border:#373737;
   }
   
   .remove-btn:hover {
     color: #fff;
-    background-color: #dc3545;
+    background-color: #9D2626;
   }
   
   .cart-summary {
@@ -152,14 +164,10 @@
     background-color: #9D2626;
     }
 
-  label {
-    font-weight: lighter;
-    font-size: 16px;
-    color: #8b8b8b;
-  }
+
 
   .basket-button {
-    background-color: #545b62;
+    background-color: #373737;
     border: none;
     outline: none;
     color: white;
@@ -168,30 +176,35 @@
     font-size: 12px;
     height: 40px;
     width: 100px;
-    border-radius: 15px 15px;
+    transition: all 0.2s ease-in-out;
   }
 
   .basket-button:hover {
-    font-weight: bold;
+    background-color: #9D2626;
   }
 
   #dropdownMenuButton {
     background-color: #fff;
     color: #000;
+    border-radius: 0;
   }
 
   #resetButton {
-    background-color: #707c88;
-    border: #545b62;
+    background-color: #373737;
+    border-radius: 0;
+  }
+
+  .btn-group {
+    border-radius: 0;
   }
   
   #resetButton:hover {
-    background-color: #545b62;
+    background-color: #9D2626;
   }
 
   .card-title {
     color: #000;
-    
+
   }
   .card-title:hover {
     font-weight: bold;
@@ -201,4 +214,14 @@
     .home-icon {
       display:none!important;
     }
+}
+
+.primary-button {
+  border: solid 1px;
+  background-color: #FCFBF6;
+  color:black;
+}
+
+.primary-button:hover {
+  color:white;
 }
