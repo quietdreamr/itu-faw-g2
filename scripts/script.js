@@ -29,9 +29,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
       }      
       });
   });
-  document.getElementById('cart').addEventListener('click', function() {
-    fetchCart()
-  });
+  addUserName();
 
 });
 
@@ -46,4 +44,3 @@ function filterCardsByPrice() {
   let target = document.getElementById('carousel-2')
   createCards(filterPrice, target);
 }
-

@@ -30,13 +30,13 @@ function createCard(results, index) {
 
     let html = `<div class="card" style="width: 18rem;">
     <div class="card-body">
-    <a href="./productpage.html?id=${id}">
+    <a style="text-decoration:none;" href="./product.html?id=${id}">
       <img class="mb-5" src="${image}">
       <h5 class="card-title">${name}</h5>
     </a>
       <h5 class="card-price">${price} DKK</h5>
       <div class="card-text">${description}</div>
-      <a href="#" onclick="addToCart(${id})" class="btn btn-primary">Add-to-cart</a>
+      <button class="basket-button" onclick="addToCart(${id})">Add to basket</button>
         </div>
         </div>`
 
@@ -54,6 +54,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
     getProducts().then((results) => {
         prepareCollection()
     });
+    addUserName();
 });
   
 function AttributeFilter(attribute, value) {

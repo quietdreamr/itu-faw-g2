@@ -26,7 +26,9 @@ function fetchCart() {
     const summary = `
       <div class="cart-summary">
         <span class="total-items">Total Items: ${cart.count}</span> 
-        <span class="total-price">Total Price: ${cart.total.toFixed(2)} DKK</span>
+        <span class="total-price">Total Price: ${cart.total.toFixed(
+          2
+        )} DKK</span>
       </div>
     `;
     document.querySelector(".cart-summary").innerHTML = summary;
@@ -129,3 +131,9 @@ function viewCart() {
   jQuery("#cartModal").modal("show");
   fetchCart();
 }
+
+window.addEventListener("DOMContentLoaded", (event) => {
+  document.getElementById("cart").addEventListener("click", function () {
+    fetchCart();
+  });
+});
