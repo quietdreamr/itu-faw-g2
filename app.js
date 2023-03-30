@@ -7,9 +7,9 @@ const port = process.env.PORT || 3000;
 app.use(express.static('public'));
 
 // Importing all the routes
-const homeroute=require("./routes/Home.js")
-const loginroute=require("./routes/Login.js")
-const catalogueroute=require("./routes/Catalogue.js")
+const homeroute=require("./routes/home.js")
+const loginroute=require("./routes/login.js")
+const catalogueroute=require("./routes/catalogue.js")
 
 app.get('/', function(req, res) {
   res.redirect('/Home');
@@ -31,9 +31,11 @@ app.get('/login.html', function(req, res) {
 app.use("/",homeroute)
 app.use("/",loginroute)
 app.use("/",catalogueroute)
-app.listen((3000),()=>{
-    console.log('Server is running at http://localhost:' + port)
-})
+
+app.listen(port, () => {
+  console.log(`Server is running at http://localhost:${port}`);
+});
+
 
 //The changes I made broke the styling on the normal page if you click "Go Live" --> Need to find a fix for this
 //Last thing to do is to find out how to load in the product data as well --> Nothing loads currently when you got to the paths

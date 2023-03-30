@@ -5,7 +5,7 @@ const router=express.Router()
 const path = require('path');
 
 // Handling request using router
-router.get("/Catalogue",(req,res,next)=>{
+router.get("/catalogue",(req,res,next)=>{
     res.sendFile(path.join(__dirname, '../catalogue.html'));
 })
   

@@ -5,7 +5,7 @@ const router=express.Router()
 const path = require('path');
 
 // Handling login request
-router.get("/Login",(req,res,next)=>{
+router.get("/login",(req,res,next)=>{
     res.sendFile(path.join(__dirname, '../login.html'));
 })
 
