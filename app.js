@@ -35,7 +35,3 @@ app.use("/",catalogueroute)
 app.listen(port, () => {
   console.log(`Server is running at http://localhost:${port}`);
 });
-
-
-//The changes I made broke the styling on the normal page if you click "Go Live" --> Need to find a fix for this
-//Last thing to do is to find out how to load in the product data as well --> Nothing loads currently when you got to the paths
