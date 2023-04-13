@@ -72,4 +72,19 @@ router.post('/api/products', async (req, res) => {
   }
 });
 
+router.get('/api/products/:attribute/', async (req, res) => {
+  const { attribute } = req.params;
+
+  try {
+    const products = await readProducts();
+
+    const values = [...new Set(products.map((product) => product[attribute]))];
+    
+    res.send(values);
+  } catch (error) {
+    res.status(500).send('Error reading products file');
+  }
+});
+
+
 module.exports = router;
