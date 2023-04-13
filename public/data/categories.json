@@ -1,0 +1,20 @@
+{
+    "categories": [
+      {
+        "id": 1,
+        "name": "Red",
+        "url": "https://www.example.com/categories/red-wines"
+      },
+      {
+        "id": 2,
+        "name": "White",
+        "url": "https://www.example.com/categories/white-wines"
+      },
+      {
+        "id": 3,
+        "name": "Sparkling",
+        "url": "https://www.example.com/categories/sparkling-wines"
+      }
+    ]
+  }
+  
