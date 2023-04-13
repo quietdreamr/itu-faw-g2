@@ -1,6 +1,9 @@
 const express = require('express');
 const router = express.Router();
 const fs = require('fs').promises;
+const bodyParser = require('body-parser');
+
+router.use(bodyParser.json());
 
 async function readProducts() {
   try {
@@ -42,6 +45,30 @@ router.get('/api/products/', async (req, res) => {
     res.send(products);
   } catch (error) {
     res.status(500).send('Error reading products file');
+  }
+});
+
+router.post('/api/products', async (req, res) => {
+  try {
+    const products = await readProducts();
+
+    const newProduct = req.body;
+
+    const requiredKeys = ['brand', 'description', 'id', 'image', 'list_price', 'name', 'country', 'year', 'category', 'price', 'url'];
+    const missingKeys = requiredKeys.filter((key) => !(key in newProduct));
+
+    if (missingKeys.length > 0) {
+      return res.status(400).send(`Missing attributes: ${missingKeys.join(', ')}`);
+    }
+
+    products.push(newProduct);
+
+    await fs.writeFile('./public/data/products.json', JSON.stringify({ product_data: products }));
+
+    res.send(newProduct);
+  } catch (error) {
+    console.error('Error adding new product', error);
+    res.status(500).send('Error adding new product');
   }
 });
 
