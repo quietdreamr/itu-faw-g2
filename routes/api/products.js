@@ -33,7 +33,7 @@ router.get('/api/products/:attribute/:value', async (req, res) => {
       return res.status(404).send('Product not found');
     }
 
-    res.send(product);
+    res.json(product);
   } catch (error) {
     res.status(500).send('Error reading products file');
   }
@@ -42,7 +42,7 @@ router.get('/api/products/:attribute/:value', async (req, res) => {
 router.get('/api/products/', async (req, res) => {
   try {
     const products = await readProducts();
-    res.send(products);
+    res.json(products);
   } catch (error) {
     res.status(500).send('Error reading products file');
   }
@@ -65,7 +65,7 @@ router.post('/api/products', async (req, res) => {
 
     await fs.writeFile('./public/data/products.json', JSON.stringify({ product_data: products }));
 
-    res.send(newProduct);
+    res.json(newProduct);
   } catch (error) {
     console.error('Error adding new product', error);
     res.status(500).send('Error adding new product');
@@ -80,7 +80,7 @@ router.get('/api/products/:attribute/', async (req, res) => {
 
     const values = [...new Set(products.map((product) => product[attribute]))];
     
-    res.send(values);
+    res.json(values);
   } catch (error) {
     res.status(500).send('Error reading products file');
   }
