@@ -2,7 +2,7 @@ const express = require("express")
 const router = express.Router()
 const fs = require('fs');
 
-router.get('/products/:attribute/:value', function(req, res){
+router.get('/api/products/:attribute/:value', function(req, res){
     const value = req.params.value;
     const attribute = req.params.attribute;
   
@@ -28,6 +28,17 @@ router.get('/products/:attribute/:value', function(req, res){
       res.send(product);
     });
   });
+
+  router.get('/api/products/', function(req, res){
+    fs.readFile('.\\public\\data\\products.json', 'utf8', (err, data) => {
+        
+      if (err){
+        return res.status(500).send('Error reading products file');
+      }
+  
+      const products = JSON.parse(data)['product_data'];
+      res.send(products);
+  })});
   
 
 module.exports=router

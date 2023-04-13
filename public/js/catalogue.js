@@ -1,10 +1,10 @@
 var results;
 
 function getProducts() {
-    return fetch("./data/products.json")
+    return fetch("/api/products")
    .then((response) => response.json())
    .then((json) => {
-       results = json['product_data']
+       results = json
    });
 }
 
@@ -58,10 +58,14 @@ window.addEventListener('DOMContentLoaded', (event) => {
 });
   
 function AttributeFilter(attribute, value) {
-    let filtered_results = results.filter(wine => wine[attribute] === value);
+    fetch(`/api/products/${attribute}/${value}`)
+   .then((response) => response.json())
+   .then((json) => {
+       results = json
+   });
     clearCollection()
-    createCards(filtered_results)
-    return filtered_results;
+    createCards(results)
+    return results;
 }
 
 function Reset(){
