@@ -1,10 +1,10 @@
 var results = {};
 
 function getProducts() {
-  return fetch("./data/products.json")
+  return fetch("/api/products")
  .then((response) => response.json())
  .then((json) => {
-     results = json['product_data']
+     results = json
  });
 }
 

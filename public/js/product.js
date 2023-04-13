@@ -1,7 +1,7 @@
 var results = {};
 
 function getProducts() {
-  return fetch("./data/products.json")
+  return fetch("./api/products")
  .then((response) => response.json())
  .then((json) => {
      results = json['product_data']
@@ -67,7 +67,7 @@ function createProduct(product) {
 
 
 window.addEventListener('DOMContentLoaded', (event) => {
-fetch('./data/products.json')
+fetch('./api/products')
   .then(response => response.json())
   .then(data => {
     let pid = parseInt(getParameterByName('id'))
