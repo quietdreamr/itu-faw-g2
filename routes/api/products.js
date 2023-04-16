@@ -30,12 +30,12 @@ router.get('/api/products/:attribute/:value', async (req, res) => {
     });
 
     if (!product) {
-      return res.status(404).send('Product not found');
+      return res.status(404).json({ message: 'Product not found'});
     }
 
     res.json(product);
   } catch (error) {
-    res.status(500).send('Error reading products file');
+    res.status(500).json({ message: 'Error reading products file'});
   }
 });
 
@@ -44,7 +44,7 @@ router.get('/api/products/', async (req, res) => {
     const products = await readProducts();
     res.json(products);
   } catch (error) {
-    res.status(500).send('Error reading products file');
+    res.status(500).json({ message: 'Error reading products file'});
   }
 });
 
@@ -58,7 +58,7 @@ router.post('/api/products', async (req, res) => {
     const missingKeys = requiredKeys.filter((key) => !(key in newProduct));
 
     if (missingKeys.length > 0) {
-      return res.status(400).send(`Missing attributes: ${missingKeys.join(', ')}`);
+      return res.status(400).json({ message: `Missing attributes: ${missingKeys.join(', ')}`});
     }
 
     products.push(newProduct);
@@ -68,7 +68,7 @@ router.post('/api/products', async (req, res) => {
     res.json(newProduct);
   } catch (error) {
     console.error('Error adding new product', error);
-    res.status(500).send('Error adding new product');
+    res.status(500).json({ message: 'Error adding new product'});
   }
 });
 
@@ -82,7 +82,7 @@ router.get('/api/products/:attribute/', async (req, res) => {
     
     res.json(values);
   } catch (error) {
-    res.status(500).send('Error reading products file');
+    res.status(500).json({ message: 'Error reading products file'});
   }
 });
 
