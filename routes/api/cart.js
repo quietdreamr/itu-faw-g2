@@ -69,6 +69,37 @@ router.get('/api/cart/', async (req, res) => {
     }
   });  
 
+  router.put('/api/cart/:id', async (req, res) => {
+    const { id } = req.params;
+  
+    try {
+      const cartData = await readCartData();
+  
+      if (!(id in cartData['cart_data'])) {
+        return res.status(404).json({ message: 'Cart Data Not Found'});
+      }
+  
+      const updatedCartData = req.body;
+    
+      const requiredKeys = ['product_data', 'count', 'total'];
+      const missingKeys = requiredKeys.filter((key) => !(key in updatedCartData));
+    
+      if (missingKeys.length > 0) {
+        return res.status(400).json({ message: `Missing attributes: ${missingKeys.join(', ')}`});
+      }
+      
+      cartData['cart_data'][id] = updatedCartData;
+    
+      await fs.writeFile('./public/data/carts.json', JSON.stringify(cartData));
+    
+      res.json(cartData);
+    } catch (error) {
+      console.error('Error updating cart data', error);
+      res.status(500).json({ message: 'Error updating cart data'});
+    }
+  }); 
+  
+
   router.delete('/api/cart/:id', async (req, res) => {
     const { id } = req.params;
     try {

@@ -2,13 +2,13 @@
 
 async function fetchCart() {
   let id = localStorage.getItem("user_id");
-  let cart = {}
+  let user_cart = {}
 
   try {
     const response = await fetch(`/api/cart/${id}`);
     if (response.ok) {
       const data = await response.json();
-      cart = data;
+      user_cart = data;
     } else {
       console.error('API request failed with status:', response.status);
       // Handle error condition here
@@ -18,12 +18,12 @@ async function fetchCart() {
     // Handle error condition here
   }
 
-  if (cart && cart.count > 0) {
+  if (user_cart && user_cart.count > 0) {
     jQuery(".cart-table, .cart-summary").show();
     const target = document.querySelector(".cart-table-body");
     target.innerHTML = "";
 
-    for (const product of cart.product_data) {
+    for (const product of user_cart.product_data) {
       const { id, name, price, quantity } = product;
 
       target.innerHTML += `
@@ -32,7 +32,9 @@ async function fetchCart() {
           <div class="cart-table-cell">${quantity}</div>
           <div class="cart-table-cell">${quantity * price} DKK</div>
           <div class="cart-table-cell">
-            <button class="remove-btn" onclick="removeFromCart(${id});fetchCart();">&times;</button>
+            <button class="remove-btn" onclick="removeFromCart(${id}).then(() => {
+              fetchCart();
+            });">&times;</button>
           </div>
         </div>
       `;
@@ -40,8 +42,8 @@ async function fetchCart() {
 
     const summary = `
       <div class="cart-summary">
-        <span class="total-items">Total Items: ${cart.count}</span> 
-        <span class="total-price">Total Price: ${cart.total.toFixed(
+        <span class="total-items">Total Items: ${user_cart.count}</span> 
+        <span class="total-price">Total Price: ${user_cart.total.toFixed(
           2
         )} DKK</span>
       </div>
@@ -140,42 +142,62 @@ async function addToCart(product_id) {
   }
 }
 
-function removeFromCart(product_id) {
-  let cart = JSON.parse(localStorage.getItem("cart")) || {
-    product_data: [],
-    count: 0,
-    total: 0,
-  };
+async function removeFromCart(product_id) {
+  let user_id = localStorage.getItem("user_id");
   let updatedCartData = { product_data: [], count: 0, total: 0 };
   let productIndex = -1;
   let productPrice = 0;
 
-  for (let i = 0; i < cart.product_data.length; i++) {
-    if (cart.product_data[i].id === product_id) {
-      productIndex = i;
-      productPrice = cart.product_data[i].price;
-      break;
-    }
-  }
+  try {
+    const response = await fetch(`/api/cart/${user_id}`);
+    if (response.ok) {
+      const cart = await response.json();
+      for (let i = 0; i < cart.product_data.length; i++) {
+        if (cart.product_data[i].id === product_id) {
+          productIndex = i;
+          productPrice = cart.product_data[i].price;
+          break;
+        }
+      }
 
-  if (productIndex !== -1) {
-    let product = cart.product_data[productIndex];
-    if (product.quantity > 1) {
-      product.quantity--;
-      updatedCartData.product_data = cart.product_data;
-      updatedCartData.count = cart.count - 1;
-      updatedCartData.total = cart.total - productPrice;
+      if (productIndex !== -1) {
+        let product = cart.product_data[productIndex];
+        if (product.quantity > 1) {
+          product.quantity--;
+          updatedCartData.product_data = cart.product_data;
+          updatedCartData.count = cart.count - 1;
+          updatedCartData.total = cart.total - productPrice;
+        } else {
+          updatedCartData.product_data = cart.product_data.filter(
+            (_, i) => i !== productIndex
+          );
+          updatedCartData.count = cart.count - 1;
+          updatedCartData.total = cart.total - productPrice;
+        }
+
+        const updateResponse = await fetch(`/api/cart/${user_id}`, {
+          method: 'PUT',
+          body: JSON.stringify(updatedCartData),
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        });
+        
+        if (!updateResponse.ok) {
+          console.error('API request failed with status:', updateResponse.status);
+          // Handle error condition here
+        }
+        return true;
+      } else {
+        return false;
+      }
     } else {
-      updatedCartData.product_data = cart.product_data.filter(
-        (_, i) => i !== productIndex
-      );
-      updatedCartData.count = cart.count - 1;
-      updatedCartData.total = cart.total - productPrice;
+      console.error('API request failed with status:', response.status);
+      // Handle error condition here
     }
-    localStorage.setItem("cart", JSON.stringify(updatedCartData));
-    return true;
-  } else {
-    return false;
+  } catch (error) {
+    console.error('Error fetching cart data', error);
+    // Handle error condition here
   }
 }
 
