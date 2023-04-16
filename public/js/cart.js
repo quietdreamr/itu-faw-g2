@@ -1,7 +1,22 @@
 // Cart script
 
-function fetchCart() {
-  const cart = JSON.parse(localStorage.getItem("cart"));
+async function fetchCart() {
+  let id = localStorage.getItem("user_id");
+  let cart = {}
+
+  try {
+    const response = await fetch(`/api/cart/${id}`);
+    if (response.ok) {
+      const data = await response.json();
+      cart = data;
+    } else {
+      console.error('API request failed with status:', response.status);
+      // Handle error condition here
+    }
+  } catch (error) {
+    console.error('Error fetching cart data', error);
+    // Handle error condition here
+  }
 
   if (cart && cart.count > 0) {
     jQuery(".cart-table, .cart-summary").show();
@@ -42,12 +57,28 @@ function fetchCart() {
   return true;
 }
 
-function addToCart(product_id) {
-  let cart = JSON.parse(localStorage.getItem("cart")) || {
+async function addToCart(product_id) {
+  let id = localStorage.getItem("user_id");
+  let cart = {
     product_data: [],
     count: 0,
     total: 0,
   };
+  
+  try {
+    const response = await fetch(`/api/cart/${id}`);
+    if (response.ok) {
+      const data = await response.json();
+      cart = data;
+    } else {
+      console.error('API request failed with status:', response.status);
+      // Handle error condition here
+    }
+  } catch (error) {
+    console.error('Error fetching cart data', error);
+    // Handle error condition here
+  }
+
   let product = null;
   for (let i = 0; i < cart.product_data.length; i++) {
     if (cart.product_data[i].id === product_id) {
@@ -75,6 +106,32 @@ function addToCart(product_id) {
         total: new_total,
       })
     );
+
+    fetch(`/api/cart/${id}`, {
+      method: 'POST',
+      body: JSON.stringify({
+        product_data: cart.product_data,
+        count: count,
+        total: new_total,
+      }),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Network response was not ok')
+      }
+      return response.json()
+    })
+    .then(data => {
+      console.log(data)
+    })
+    .catch(error => {
+      console.error('There was a problem with the fetch operation:', error)
+    })
+  
+
     jQuery('.cart-modal-body').text(`${product["name"]} was added to your basket.`)
     jQuery("#atcModal").modal("show");
     return true;

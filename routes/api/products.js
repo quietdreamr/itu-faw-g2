@@ -63,7 +63,7 @@ router.post('/api/products', async (req, res) => {
 
     products.push(newProduct);
 
-    await fs.writeFile('./public/data/products.json', JSON.stringify({ product_data: products }));
+    await fs.writeFile('./public/data/products.json', JSON.stringify({ products }));
 
     res.json(newProduct);
   } catch (error) {
