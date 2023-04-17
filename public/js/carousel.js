@@ -8,7 +8,7 @@ function createCard(results, index, target) {
 
   let html = `<div class="card" style="width: 18rem;">
   <div class="card-body">
-    <a style="text-decoration:none;" href="./product.html?id=${id}">
+    <a style="text-decoration:none;" href="./product?id=${id}">
     <img class="mb-5" src="${image}">
     <h5 class="card-title">${name}</h5>
     </a>
