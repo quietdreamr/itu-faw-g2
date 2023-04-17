@@ -5,6 +5,7 @@ function getProducts() {
    .then((response) => response.json())
    .then((json) => {
        results = json
+    .then(() => {prepareCollection()}) 
    });
 }
 
@@ -70,5 +71,6 @@ function AttributeFilter(attribute, value) {
 
 function Reset(){
     clearCollection()
+    getProducts()
     prepareCollection()
 }
