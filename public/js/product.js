@@ -1,10 +1,10 @@
 var results = {};
 
 function getProducts() {
-  return fetch("./api/products")
+  return fetch("/api/products")
  .then((response) => response.json())
  .then((json) => {
-     results = json['product_data']
+     results = json
  });
 }
 
@@ -67,17 +67,17 @@ function createProduct(product) {
 
 
 window.addEventListener('DOMContentLoaded', (event) => {
-fetch('./api/products')
+fetch('/api/products')
   .then(response => response.json())
   .then(data => {
     let pid = parseInt(getParameterByName('id'))
-    const filteredData = AttributeFilter(data.product_data, 'id', pid);
+    const filteredData = AttributeFilter(data, 'id', pid);
     console.log(filteredData)
     createProduct(filteredData[0])
 
     // start of carousel
     target = document.getElementById('carousel-1')
-    let filterPrice = data.product_data.filter(wine => wine['type'] === filteredData[0].type);
+    let filterPrice = data.filter(wine => wine['type'] === filteredData[0].type);
     createCards(filterPrice, target, true)
   })
   .finally(() => {
