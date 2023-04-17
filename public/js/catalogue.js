@@ -5,7 +5,6 @@ function getProducts() {
    .then((response) => response.json())
    .then((json) => {
        results = json
-    .then(() => {prepareCollection()}) 
    });
 }
 
